@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fiap-video-management-config
+  namespace: fiap-x
+data:
+  SPRING_APPLICATION_NAME: fiap-video-management
+  SPRING_DATASOURCE_URL: jdbc:postgresql://postgres.kafka.svc.cluster.local:5432/fiap-x
+  REDIS_HOST: redis.kafka.svc.cluster.local
+  SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka.kafka.svc.cluster.local:9092
+  SPRING_KAFKA_CONSUMER_GROUP_ID: video-consumer-group
+  SPRING_KAFKA_CONSUMER_AUTO_OFFSET_RESET: earliest

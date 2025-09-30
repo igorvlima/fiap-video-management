@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fiap-video-management-service
+  namespace: fiap-x
+  labels:
+    app: fiap-video-management
+spec:
+  selector:
+    app: fiap-video-management
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 30003
+  type: NodePort

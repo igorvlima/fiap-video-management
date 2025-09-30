@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fiap-video-management
+  namespace: fiap-x
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fiap-video-management
+  template:
+    metadata:
+      labels:
+        app: fiap-video-management
+    spec:
+      containers:
+        - name: fiap-video-management
+          image: igorvlima/fiap-video-management:1.0.22
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: fiap-video-management-config
+            - secretRef:
+                name: aws-credentials
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
